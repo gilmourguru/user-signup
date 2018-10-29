@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Log in to User-Signup</h2>
+<div class="justify-content-center">
+{% if form.errors %}
+<p style="color: red">Your username and password didn't match. Please try again.</p>
+{% endif %}
+<form method="post">
+  <!-- {% csrf_token %} -->
+  <input type="hidden" name="next" value="{{ next }}" />
+  {% for field in form %}
+  <div class="row">
+    <div class="col-3">
+      {{ field.label_tag }}
+    </div>
+    <div class="col-9">
+      {{ field }}
+      {% if field.help_text %}
+      <small style="color: grey">{{ field.help_text }}</small>
+      {% endif %}
+    </div>
+    {% for error in field.errors %}
+    <div class="row" style="color: red">
+      <div class="col-9">
+        {{ error }}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endfor %}
+  <br>
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <button class="btn btn-outline-primary" type="submit">Log in</button>
+    </div>
+
+  </div>
+  <a href="{% url 'signup' %}">New to User-Signup? Sign up</a>
+</form>
+</div>
+{% endblock %}

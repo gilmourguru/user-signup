@@ -2,14 +2,15 @@
 
 {% block content %}
 <h2 class="mt-2 text-center">Sign up</h2>
-<form method="post">
+<div class="justify-content-center">
+<form method="post" name="signup_form" id="my_signup_form">
   <!--{% csrf_token %}-->
   {% for field in form %}
   <div class="row">
-    <div class="col-2">
+    <div class="col-3">
       {{ field.label_tag }}
     </div>
-    <div class="col-10">
+    <div class="col-9">
       {{ field }}
       {% if field.help_text %}
       <small style="color: grey">{{ field.help_text }}</small>
@@ -25,11 +26,46 @@
   </div>
   {% endfor %}
   <br>
-  <div class="row justify-content-center">
-    <div class="col-4">
-        <button class="btn btn-success" type="submit">Sign up</button>
-    </div>
-    
-  </div>
+  
 </form>
+<div class="row justify-content-center">
+  <div class="col-4">
+      <button class="btn btn-outline-primary" onclick="validateparams()">Sign up</button>
+  </div>
+  
+</div>
+</div>
+<script>function validateparams()
+  { 
+  var username = document.signup_form.username.value; 
+  console.log(username);
+  var password1 = document.signup_form.password1.value;
+  console.log(password1);
+  var password2 = document.signup_form.password2.value;
+  console.log(password2);
+  var mnlen = 3;
+  console.log(mnlen);
+  var mxlen = 20;
+  console.log(mxlen);
+  
+      if (username.length < mnlen || username.length > mxlen) {
+          
+          alert("Please input a username between " + mnlen + " and " + mxlen + " characters");
+          console.log('returning false');
+          return false;
+      }
+      else if (password1.length < mnlen || password1.length > mxlen) {
+          
+          alert('Please input a password between ' + mnlen + " and " + mxlen + ' characters');
+          console.log('returning false');
+          return false;
+      }
+      else {
+          document.getElementById('my_signup_form').submit();
+          console.log('returning true');
+          return true;
+      }
+  }
+  
+  </script>
 {% endblock %}
