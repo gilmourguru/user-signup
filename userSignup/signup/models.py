@@ -1,12 +1,12 @@
-# from __future__ import unicode_literals
+from __future__ import unicode_literals
 
-# from django.db import models
-# from django.core.mail import send_mail
-# from django.contrib.auth.models import PermissionsMixin
-# from django.contrib.auth.base_user import AbstractBaseUser
-# from django.utils.translation import ugettext_lazy as _
+from django.db import models
+from django.core.mail import send_mail
+from django.contrib.auth.models import PermissionsMixin
+from django.contrib.auth.base_user import AbstractBaseUser
+from django.utils.translation import ugettext_lazy as _
 
-# from userSignup.signup.managers import UserManager
+from userSignup.signup.managers import UserManager
 
 # # Create your models here.
 # class MyUser(AbstractBaseUser, PermissionsMixin):
@@ -23,3 +23,10 @@
 #     class Meta:
 #         verbose_name = _('user')
 #         verbose_name_plural = _('users')
+
+# class CreateAdminUser(UserManager):
+#     username = models.CharField(_('username'), unique=True)
+#     pass1 = models.CharField(_('password1'))
+#     pass2 = models.CharField(_('password2'))
+#     newSuperUser = UserManager.create_superuser(self, username, pass1)
+#     newSuperUser.save()

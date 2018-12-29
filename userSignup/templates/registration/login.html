@@ -1,20 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Log in to User-Signup</h2>
+<h2 class="mt-2 text-center">Log in to User-Signup</h2>
 <div class="justify-content-center">
 {% if form.errors %}
 <p style="color: red">Your username and password didn't match. Please try again.</p>
 {% endif %}
-<form method="post">
-  <!-- {% csrf_token %} -->
+<form method="post" class="form-group">
+  {% csrf_token %}
   <input type="hidden" name="next" value="{{ next }}" />
   {% for field in form %}
-  <div class="row">
-    <div class="col-3">
+  <div class="form-row">
+    <div class="col-5 text-right">
       {{ field.label_tag }}
     </div>
-    <div class="col-9">
+    <div class="col-7">
       {{ field }}
       {% if field.help_text %}
       <small style="color: grey">{{ field.help_text }}</small>
@@ -31,12 +31,17 @@
   {% endfor %}
   <br>
   <div class="row justify-content-center">
-    <div class="col-4">
+    <div class="col-4 text-center">
       <button class="btn btn-outline-primary" type="submit">Log in</button>
     </div>
 
   </div>
-  <a href="{% url 'signup' %}">New to User-Signup? Sign up</a>
+  <div class="row justify-content-center">
+    <div class="col-5 text-center">
+      <a class="text-center" href="{% url 'signup' %}">New to User-Signup? Sign up</a>
+    </div>
+  </div>
+  
 </form>
 </div>
 {% endblock %}
